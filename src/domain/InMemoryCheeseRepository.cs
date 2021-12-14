@@ -12,10 +12,13 @@
         {
         }
 
-        public Task Add(Cheese cheese)
+        public Task<Cheese> Add(Cheese cheese)
         {
-            _cheeses.Add(cheese.Id, cheese);
-            return Task.CompletedTask;
+            var nextKey = _cheeses.Keys.LastOrDefault() + 1;
+            var newCheese = cheese with { Id = nextKey };
+
+            _cheeses.Add(nextKey, newCheese);
+            return Task.FromResult(newCheese);
         }
 
         public Task Delete(uint id)

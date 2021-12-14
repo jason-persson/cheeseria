@@ -14,15 +14,14 @@ namespace Tests
         {
             // Arrange
             var repository = new InMemoryCheeseRepository();
-            var expected = new Cheese(1, "Test1", "", "", 0);
+            var cheeseToAdd = new Cheese(999, "Test1", "", "", 0);
+            var expected = cheeseToAdd with { Id = 1 };
 
             // Act
-            await repository.Add(expected);
+            var actual = await repository.Add(expected);
 
             // Assert
-            var actual = await repository.GetAll();
-            actual.Should().ContainSingle()
-                .And.Contain(expected);
+            actual.Should().Be(expected);
         }
 
         [Fact]

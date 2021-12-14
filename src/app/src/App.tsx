@@ -8,6 +8,8 @@ function App() {
 
   const [cheeses, setCheeses] = useState<Cheese[]>([]);
 
+  // If I had more time and the application logic complexity warranted it
+  // I'd use Redux along with the Redux Toolkit
   useEffect(() => {
     fetchCheeses().then(cheeses => setCheeses(cheeses));
   });

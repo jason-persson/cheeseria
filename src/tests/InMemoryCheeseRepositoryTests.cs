@@ -14,7 +14,7 @@ namespace Tests
         {
             // Arrange
             var repository = new InMemoryCheeseRepository();
-            var expected = new Cheese(1, "Test1", "");
+            var expected = new Cheese(1, "Test1", "", "", 0);
 
             // Act
             await repository.Add(expected);
@@ -30,9 +30,9 @@ namespace Tests
         {
             // Arrange
             var repository = new InMemoryCheeseRepository();
-            var cheese1 = new Cheese(1, "Test1", "");
-            var cheese2 = new Cheese(2, "Test2", "");
-            var cheese3 = new Cheese(3, "Test3", "");
+            var cheese1 = new Cheese(1, "Test1", "", "", 0);
+            var cheese2 = new Cheese(2, "Test2", "", "", 0);
+            var cheese3 = new Cheese(3, "Test3", "", "", 0);
 
             await repository.Add(cheese1);
             await repository.Add(cheese2);
@@ -67,7 +67,7 @@ namespace Tests
             // Arrange
             var repository = new InMemoryCheeseRepository();
             const int expectedId = 1;
-            var expected = new Cheese(expectedId, "Test1", "");
+            var expected = new Cheese(expectedId, "Test1", "", "", 0);
 
             await repository.Add(expected);
 
@@ -97,8 +97,8 @@ namespace Tests
             // Arrange
             var repository = new InMemoryCheeseRepository();
             const int expectedId = 1;
-            var original = new Cheese(expectedId, "Original Name", "");
-            var updated = new Cheese(expectedId, "Updated Name", "");
+            var original = new Cheese(expectedId, "Original Name", "", "", 0);
+            var updated = new Cheese(expectedId, "Updated Name", "", "", 0);
 
             await repository.Add(original);
             
@@ -120,7 +120,7 @@ namespace Tests
             var repository = new InMemoryCheeseRepository();
 
             // Act
-            var act = () => repository.Update(new Cheese(1, "Test1", ""));
+            var act = () => repository.Update(new Cheese(1, "Test1", "", "", 0));
 
             // Assert
             await act.Should().ThrowAsync<KeyNotFoundException>();
@@ -131,9 +131,9 @@ namespace Tests
         {
             // Arrange
             var repository = new InMemoryCheeseRepository();
-            var cheese1 = new Cheese(1, "Test1", "");
-            var cheese2 = new Cheese(2, "Test2", "");
-            var cheese3 = new Cheese(3, "Test3", "");
+            var cheese1 = new Cheese(1, "Test1", "", "", 0);
+            var cheese2 = new Cheese(2, "Test2", "", "", 0);
+            var cheese3 = new Cheese(3, "Test3", "", "", 0);
 
             await repository.Add(cheese1);
             await repository.Add(cheese2);

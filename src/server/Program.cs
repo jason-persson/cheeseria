@@ -6,11 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ICheeseRepository, InMemoryCheeseRepository>(x =>
     {
         var repository = new InMemoryCheeseRepository();
-        repository.Add(new Cheese(1, "Cheddar", "cheddar.jpg"));
-        repository.Add(new Cheese(2, "Brie", "brie.jpg"));
-        repository.Add(new Cheese(3, "Danish Blue", "danish_blue.jpg"));
-        repository.Add(new Cheese(4, "Parmesan", "parmesan.jpg"));
-        repository.Add(new Cheese(5, "Camembert", "camembert.jpg"));
+        repository.Add(new Cheese(1, "Cheddar", "cheddar.jpg", "Yellow", 3.55m));
+        repository.Add(new Cheese(2, "Brie", "brie.jpg", "Pale yellow", 5.50m));
+        repository.Add(new Cheese(3, "Danish Blue", "danish_blue.jpg", "White with blue streaks", 7.00m));
+        repository.Add(new Cheese(4, "Parmesan", "parmesan.jpg", "Orangish yellow", 8.25m));
+        repository.Add(new Cheese(5, "Camembert", "camembert.jpg", "Pale yellow", 4.75m));
         return repository;
     }
 );
@@ -27,9 +27,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors(x => 
-    x.AllowAnyMethod()
-    .WithOrigins("http://localhost:3000"));
+    app.UseCors(x =>
+        x.AllowAnyMethod()
+        .WithOrigins("http://localhost:3000")
+    );
 }
 
 app.UseDefaultFiles();

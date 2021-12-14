@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Cheese } from './Cheese';
-
-export const API_BASE = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:5002/'
-  : 'http://localhost/';
+import CheeseList from './CheeseList';
+import { fetchCheeses } from './api';
+import './bulma.css';
 
 function App() {
 
   const [cheeses, setCheeses] = useState<Cheese[]>([]);
 
   useEffect(() => {
-    fetch(API_BASE + 'cheeses')
-      .then(response => response.json())
-      .then(data => {
-        setCheeses(data);
-      })
-      .catch(err => console.log(err));
+    fetchCheeses().then(cheeses => setCheeses(cheeses));
   });
 
   return (
-    <div className="App">
-      <h1>Cheese list:</h1>
-      <ul>
-        {
-          cheeses.map(x => <li key={x.id}>{x.name}</li>)
-        }
-      </ul>
-    </div>
+    <>
+      {<section className='hero is-info'>
+        <div className='hero-body'>
+          <p className='title'>Patient Zero Cheeseria</p>
+          <p className='subtitle'>We sell the best cheeses</p>
+        </div>
+      </section>}
+      <section>
+        <CheeseList cheeses={cheeses} />
+      </section>
+    </>
   );
 }
 

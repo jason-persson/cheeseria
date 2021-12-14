@@ -38,7 +38,6 @@ RUN npm run build
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS dotnet_runtime
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM dotnet_runtime AS final
 WORKDIR /app

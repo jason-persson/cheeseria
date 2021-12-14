@@ -8,3 +8,5 @@ src/server/bin
 src/server/obj
 src/tests/bin
 src/tests/obj
+src/app/build
+src/app/node_modules

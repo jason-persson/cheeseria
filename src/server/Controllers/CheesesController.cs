@@ -9,11 +9,13 @@ namespace Server.Controllers
     {
         private readonly ILogger<CheesesController> _logger;
         private readonly ICheeseRepository _cheeseRepository;
+        private readonly ICheesePriceCalculator _priceCalculator;
 
-        public CheesesController(ILogger<CheesesController> logger, ICheeseRepository cheeseRepository)
+        public CheesesController(ILogger<CheesesController> logger, ICheeseRepository cheeseRepository, ICheesePriceCalculator priceCalculator)
         {
             _logger = logger;
             _cheeseRepository = cheeseRepository;
+            _priceCalculator = priceCalculator;
         }
 
         /// <summary>
@@ -166,6 +168,36 @@ namespace Server.Controllers
             {
                 await _cheeseRepository.Delete(id);
                 return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                _logger.LogError($"Cheese with id: {id}, not found");
+                return NotFound();
+            }
+        }
+
+        /// <summary>
+        /// Calculates and returns the total price for a given cheese item of a given amount in kg.
+        /// </summary>
+        /// <param name="id">The id of the Cheese item to calculate the price for.</param>
+        /// <param name="kgToBuy">How much cheese to buy in kilogrammes.</param>
+        /// <returns>The total price of the cheese.</returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /Cheeses/1/price?kgToBuy=3.5
+        ///
+        /// </remarks>
+        /// <response code="404">If the [id] is not found.</response>
+        [HttpGet("{id}/price")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<CheesePrice>> CalculatePrice(uint id, [FromQuery]decimal kgToBuy)
+        {
+            try
+            {
+                var price = await _priceCalculator.CalculateCheesePrice(id, kgToBuy);
+                return Ok(new CheesePrice(id, kgToBuy, price));
             }
             catch (KeyNotFoundException)
             {

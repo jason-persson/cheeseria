@@ -1,8 +1,8 @@
+using Domain;
+using FluentAssertions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
-using FluentAssertions;
-using Domain;
-using System.Collections.Generic;
 
 namespace Tests
 {

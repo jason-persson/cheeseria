@@ -17,6 +17,8 @@ builder.Services.AddSingleton<ICheeseRepository, InMemoryCheeseRepository>(x =>
     }
 );
 
+builder.Services.AddTransient<ICheesePriceCalculator, CheesePriceCalculator>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

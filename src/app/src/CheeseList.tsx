@@ -13,7 +13,7 @@ function CheeseList({ cheeses }: Props) {
             <div className='columns is-centered'>
                 <div className='column is-half'>
                     {
-                        cheeses.map(x => <CheeseCard cheese={x} />)
+                        cheeses.map(x => <CheeseCard key={x.id} cheese={x} />)
                     }
                 </div>
             </div>

@@ -2,7 +2,10 @@
 {
     public interface ICheeseRepository
     {
-        Task AddCheese(Cheese cheese);
-        Task<IEnumerable<Cheese>> GetCheeses();
+        Task Add(Cheese cheese);
+        Task Delete(uint id);
+        Task<Cheese> Get(uint id);
+        Task<Cheese> Update(Cheese cheese);
+        Task<IEnumerable<Cheese>> GetAll();
     }
 }

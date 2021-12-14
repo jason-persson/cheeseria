@@ -19,7 +19,7 @@ namespace Server.Controllers
         [HttpGet(Name = "GetCheeses")]
         public async Task<IEnumerable<Cheese>> Get()
         {
-            var cheeses = await _cheeseRepository.GetCheeses();
+            var cheeses = await _cheeseRepository.GetAll();
             return cheeses;
         }
     }

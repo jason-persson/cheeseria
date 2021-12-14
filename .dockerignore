@@ -1,0 +1,8 @@
+.vs
+.git
+LICENSE
+README.md
+src/domain/bin
+src/domain/obj
+src/server/bin
+src/server/obj

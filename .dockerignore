@@ -6,3 +6,5 @@ src/domain/bin
 src/domain/obj
 src/server/bin
 src/server/obj
+src/tests/bin
+src/tests/obj

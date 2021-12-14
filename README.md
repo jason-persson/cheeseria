@@ -25,10 +25,10 @@ For example, from the project root run the following in a terminal:
 
 # If I had more time
 - I would create a domain layer that uses an ICheeseRepository instance.
-    -- I would unit test the domain layer instead of the InMemoryCheeseRepository class.
+    - I would unit test the domain layer instead of the InMemoryCheeseRepository class.
 - I would use a SQL database. I'm most familiar with SQL Server so I'd use that. If I had even more time I'd use PostgreSQL because I’d like to have a chance to use it.
-    -- I’d use EF Core to talk to the DB.
-    -- If warranted I’d use Dapper for complex queries.
+    - I’d use EF Core to talk to the DB.
+    - If warranted I’d use Dapper for complex queries.
 - In the React front end if the application logic became more complex I'd consider using Redux along with the Redux Toolkit.
 
 
